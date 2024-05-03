@@ -1,3 +1,5 @@
+// This is an action
+
 function clickAcceptButton() {
     // Create an XPath expression to find buttons containing the text 'accept'
     const xpath = "//button[contains(translate(text(), 'ABCDEFGHIJKLMNOPQRSTUVWXYZ', 'abcdefghijklmnopqrstuvwxyz'), 'akzeptieren')]";
