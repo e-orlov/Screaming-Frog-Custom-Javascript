@@ -1,0 +1,41 @@
+// With this snippet you can query an GET-based API with XML response for crawled URLs
+// In example we query Sistrix search visibility for each URL crawled by Screaming Frog
+
+const API_KEY = 'YOUR_API_KEY';
+const FORMAT = 'xml';
+const ELEMENT_NAME = 'sichtbarkeitsindex'; // XML tag to look for
+const ATTRIBUTE_NAME = 'value'; // XML attribute to extract
+
+function fetchApi() {
+    const url = `https://api.sistrix.com/domain.sichtbarkeitsindex?api_key=${API_KEY}&format=${FORMAT}&domain=` + document.URL;
+    return fetch(url)
+        .then(response => {
+            if (!response.ok) {
+                return response.text().then(text => { throw new Error(text) });
+            }
+            return response.text();  // Get the response as text since it's XML
+        })
+        .then(str => {
+            const parser = new DOMParser();
+            const xmlDoc = parser.parseFromString(str, "text/xml");  // Parse the text to XML Document
+            const elements = xmlDoc.getElementsByTagName(ELEMENT_NAME);  // Get elements by tag name
+            if (elements.length > 0) {
+                const value = elements[0].getAttribute(ATTRIBUTE_NAME);
+                if (value !== null) {
+                    return parseFloat(value);  // Convert the attribute string to a float and return
+                }
+            }
+            throw new Error('Value not found in the XML response');  // Error if the attribute is null or no elements found
+        });
+}
+
+// Use the fetchApi function and handle results with seoSpider
+return fetchApi()
+    .then(value => {
+        console.log("Final value:", value); // Directly output to console for verification
+        return seoSpider.data(value);  // Process the specific number
+    })
+    .catch(error => {
+        console.error("Error:", error);
+        return seoSpider.error(error);
+    });
