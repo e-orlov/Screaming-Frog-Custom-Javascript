@@ -1,5 +1,6 @@
 // This is an example code, how you can query any GET-based API with a JSON response, to get a value from specified data node. Examples: Sistrix, Semrush, Serpstat - you name it.
 // This example requests Sistrix search visibility for each URL crawled by Screaming Frog.
+// This is an extraction
 
 const API_KEY = 'YOUR_API_KEY';
 const FORMAT = 'json';  // Ensure format is set to 'json' for JSON responses
