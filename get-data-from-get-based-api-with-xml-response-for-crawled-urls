@@ -1,5 +1,6 @@
 // With this snippet you can query an GET-based API with XML response for crawled URLs
 // In example we query Sistrix search visibility for each URL crawled by Screaming Frog
+// This is an extraction
 
 const API_KEY = 'YOUR_API_KEY';
 const FORMAT = 'xml';
