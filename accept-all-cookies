@@ -1,0 +1,15 @@
+function clickAcceptButton() {
+    // Create an XPath expression to find buttons containing the text 'accept'
+    const xpath = "//button[contains(translate(text(), 'ABCDEFGHIJKLMNOPQRSTUVWXYZ', 'abcdefghijklmnopqrstuvwxyz'), 'akzeptieren')]";
+    const acceptButton = document.evaluate(xpath, document, null, XPathResult.FIRST_ORDERED_NODE_TYPE, null).singleNodeValue;
+
+    if (acceptButton) {
+        console.log('Accept button found and clicked');
+        acceptButton.click();
+    } else {
+        console.log('No accept button found');
+    }
+}
+
+// Call the function
+clickAcceptButton();
