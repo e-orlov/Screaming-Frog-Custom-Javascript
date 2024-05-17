@@ -5,7 +5,7 @@ const API_KEY = 'YourKey';
 const FORMAT = 'json';		// Ensure format is set to 'json' for JSON responses
 const DATA_PATH = ['answer', 0, 'sichtbarkeitsindex', 0, 'value'];	// Path to the desired data
 const COUNTRY = 'de';		// Set the country parameter (modify as needed)
-							// Possible country values: de, at, ch, it, es, fr, pl, nl, uk, us, se, br, tr, be, ie, pt, dk, no, fi, gr, hu, sk, cz, au, jp, ca, ro, hr, bg, si
+				// Possible country values: de, at, ch, it, es, fr, pl, nl, uk, us, se, br, tr, be, ie, pt, dk, no, fi, gr, hu, sk, cz, au, jp, ca, ro, hr, bg, si
 
 function fetchApi() {
     const url = `https://api.sistrix.com/domain.sichtbarkeitsindex?api_key=${API_KEY}&mobile=true&format=${FORMAT}&country=${COUNTRY}&url=` + document.URL;
