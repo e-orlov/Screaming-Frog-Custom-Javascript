@@ -1,4 +1,5 @@
-// Get Sistrix Search Visibility for certain URL, with country setup
+// Get Sistrix mobile Search Visibility for certain URL, with country setup
+// Set url parameter "mobile" to false for desktop visibility
 
 const API_KEY = 'YourKey';
 const FORMAT = 'json';		// Ensure format is set to 'json' for JSON responses
@@ -7,7 +8,7 @@ const COUNTRY = 'de';		// Set the country parameter (modify as needed)
 							// Possible country values: de, at, ch, it, es, fr, pl, nl, uk, us, se, br, tr, be, ie, pt, dk, no, fi, gr, hu, sk, cz, au, jp, ca, ro, hr, bg, si
 
 function fetchApi() {
-    const url = `https://api.sistrix.com/domain.sichtbarkeitsindex?api_key=${API_KEY}&format=${FORMAT}&country=${COUNTRY}&url=` + document.URL;
+    const url = `https://api.sistrix.com/domain.sichtbarkeitsindex?api_key=${API_KEY}&mobile=true&format=${FORMAT}&country=${COUNTRY}&url=` + document.URL;
     return fetch(url)
         .then(response => {
             if (!response.ok) {
