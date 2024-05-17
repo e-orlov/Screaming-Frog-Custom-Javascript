@@ -1,0 +1,35 @@
+// Get Sistrix Top10 keywords for certain URL from extended database and country setup
+
+const API_KEY = 'YourKey';
+const FORMAT = 'json';		// Ensure format is set to 'json' for JSON responses
+const DATA_PATH = ['answer', 0, 'kwcount.seo.top10', 0, 'value'];	// Path to the desired data
+const COUNTRY = 'de';		// Set the country parameter (modify as needed)
+							// Possible country values: de, at, ch, it, es, fr, pl, nl, uk, us, se, br, tr, be, ie, pt, dk, no, fi, gr, hu, sk, cz, au, jp, ca, ro, hr, bg, si
+
+function fetchApi() {
+    const url = `https://api.sistrix.com/domain.kwcount.seo.top10?extended=true&api_key=${API_KEY}&format=${FORMAT}&country=${COUNTRY}&url=` + document.URL;
+    return fetch(url)
+        .then(response => {
+            if (!response.ok) {
+                return response.text().then(text => { throw new Error(text) });
+            }
+            return response.json();
+        })
+        .then(data => {
+			// Dynamically navigate through the JSON to get the desired value
+            let result = data;
+            for (let key of DATA_PATH) {
+                if (result[key] !== undefined) {
+                    result = result[key];
+                } else {
+                    throw new Error('Value not found in the API response');
+                }
+            }
+            return result;
+        });
+}
+
+// Use the fetchApi function and handle results with seoSpider
+return fetchApi()
+    .then(value => seoSpider.data(value))
+    .catch(error => seoSpider.error(error));
