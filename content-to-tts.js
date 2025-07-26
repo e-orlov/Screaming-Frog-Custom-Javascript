@@ -1,4 +1,6 @@
-// Added timeout handling and shorter retries to avoid hanging when API is slow.
+// Prepares content for Text-To-Speach
+// Cleans CTAs and orphan sentences out
+// Turns tables into readable form
 
 const baseExportDir = "C:/llms-export";
 const pageUrl = window.location.href;
