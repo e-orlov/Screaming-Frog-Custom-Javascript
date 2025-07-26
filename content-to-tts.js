@@ -55,7 +55,7 @@ return seoSpider.loadScript("https://unpkg.com/@mozilla/readability@0.4.4/Readab
     const preprocessedContent = detectOrphanLines(rawContent);
 
     const OPENAI_API_KEY = window.OPENAI_API_KEY || "PASTE_YOUR_OPENAI_API_KEY_HERE";
-    const OPENROUTER_API_KEY = window.OPENROUTER_API_KEY || "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";
+    const OPENROUTER_API_KEY = window.OPENROUTER_API_KEY || "PASTE_YOUR_OPENROUTER_API_KEY_HERE";
 
     async function callModel(url, keyName, apiKey, content, retries = 2, delay = 3000) {
       const controller = new AbortController();
